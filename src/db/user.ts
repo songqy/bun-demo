@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 
-import { client } from "./sqlite3";
+import { client, TABLE_NAME } from "./sqlite3";
 
 export const insertUser = async (
   name: string,
@@ -9,7 +9,7 @@ export const insertUser = async (
   extra: Record<string, any>
 ) => {
   try {
-    await client("users").insert({
+    await client(TABLE_NAME.USER).insert({
       name,
       email,
       address,
@@ -23,15 +23,15 @@ export const insertUser = async (
 
 export const searchUsers = async ({
   page,
-  limit,
+  size,
 }: {
   page: number;
-  limit: number;
+  size: number;
 }) => {
   try {
-    return await client("users")
-      .offset((page - 1) * limit)
-      .limit(limit)
+    return await client(TABLE_NAME.USER)
+      .offset((page - 1) * size)
+      .limit(size)
       .select();
   } catch (err) {
     console.error(err);
@@ -41,7 +41,7 @@ export const searchUsers = async ({
 
 export const getUserCount = async () => {
   try {
-    const res = await client("users").count('* as count');
+    const res = await client(TABLE_NAME.USER).count("* as count");
     return res[0].count;
   } catch (err) {
     console.error(err);

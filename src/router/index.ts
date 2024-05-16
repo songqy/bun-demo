@@ -30,9 +30,9 @@ export const router = (app: Hono<Env, Schema, "/">) => {
 
   app.get("/users", async (c) => {
     const page = Number(c.req.query("page")) || 1;
-    const limit = Number(c.req.query("limit")) || 50;
+    const size = Number(c.req.query("size")) || 50;
     const [users, count] = await Promise.all([
-      searchUsers({ page, limit }),
+      searchUsers({ page, size }),
       getUserCount(),
     ]);
     return c.json({ count, list: users });
