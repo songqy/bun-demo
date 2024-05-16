@@ -3,15 +3,23 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "start": "bun run index.ts"
+    "start": "bun run ./src/index.ts",
+    "dev": "bun run ./src/index.ts"
   },
   "devDependencies": {
-    "@types/bun": "1.1.2"
+    "@types/bun": "1.1.2",
+    "@types/fs-extra": "^11.0.4",
+    "@types/lodash": "^4.17.1"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "hono": "^4.2.9"
+    "dayjs": "^1.11.11",
+    "fs-extra": "^11.2.0",
+    "hono": "^4.2.9",
+    "knex": "^3.1.0",
+    "lodash": "^4.17.21",
+    "sqlite3": "^5.1.7"
   }
 }
