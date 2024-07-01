@@ -63,4 +63,6 @@ export const router = (app: Hono<Env, Schema, "/">) => {
     }
     return c.json({ name, email });
   });
+
+  app.notFound((c) => c.text("404 Not Found"));
 };
